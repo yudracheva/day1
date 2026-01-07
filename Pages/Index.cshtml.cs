@@ -15,5 +15,10 @@ public class IndexModel : PageModel
     public void OnGet()
     {
         ViewData["AppEnvironment"] = Environment.GetEnvironmentVariable("AppEnvironment");
+
+        var stagingValue = Environment.GetEnvironmentVariable("DebugVariable");
+        ViewData["DebugVariable"] = string.IsNullOrWhiteSpace(stagingValue)
+            ? "no value is found"
+            : stagingValue;
     }
 }
